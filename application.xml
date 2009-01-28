@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<application xmlns="http://ns.adobe.com/air/application/1.5">
+	<id>com.fanfou.ifan</id>
+	<filename>爱叽歪</filename>
+	<name>爱叽歪</name>
+	<description>爱叽歪专用于叽歪，居家旅行话痨必备。</description>
+	<version>1.1.1</version>
+	<customUpdateUI>true</customUpdateUI>
+	<installFolder>iJiWai</installFolder> 
+	<initialWindow>
+		<content>main.html</content>
+		<title>爱叽歪</title>
+		<systemChrome>none</systemChrome>
+		<transparent>true</transparent>
+		<visible>true</visible>
+		<minimizable>true</minimizable>
+		<maximizable>false</maximizable>
+		<resizable>true</resizable>
+		<width>420</width>
+        <height>600</height> 
+        <minSize>380 420</minSize>
+	</initialWindow>
+	<icon> 
+        <image16x16>img/jicon-16.png</image16x16>
+        <image32x32>img/jicon-32.png</image32x32>
+		<image48x48>img/jicon-48.png</image48x48>
+		<image128x128>img/jicon-128.png</image128x128>
+    </icon> 
+</application> 

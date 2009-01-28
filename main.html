@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh">
+	<head>
+		<meta name="Content-Type" content="text/html; charset=UTF-8" />
+		<title>爱叽歪</title>
+		<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+		<script type="application/x-shockwave-flash" src="assets/applicationupdater_ui.swf" />
+
+		<script type="text/javascript" src="js/air/AIRAliases.js" />
+		<!--script type="text/javascript" src="js/air/AIRIntrospector.js" /-->
+		<script type="text/javascript" src="js/lib/yde.js" />
+		<script type="text/javascript" src="js/lib/dragdrop-min.js" />
+		<script type="text/javascript" src="js/lib/connection-min.js" />
+		<script type="text/javascript" src="js/lib/animation-min.js" />
+		<script type="text/javascript" src="js/lib/json-min.js" />
+		<script type="text/javascript" src="js/lib/webtoolkit.base64.js" />
+
+		<script type="text/javascript" src="js/ifan/base.js" />
+		<script type="text/javascript" src="js/ifan/util.js" />
+		<script type="text/javascript" src="js/ifan/prefs.js" />
+		<script type="text/javascript" src="js/ifan/debug.js" />
+		<script type="text/javascript" src="js/ifan/ui.js" />
+		<script type="text/javascript" src="js/ifan/notification.js" />
+		<script type="text/javascript" src="js/ifan/updater.js" />
+		<script type="text/javascript" src="js/ifan/menu.js" />
+		<script type="text/javascript" src="js/ifan/msg.js" />
+		<script type="text/javascript" src="js/ifan/app.js" />
+		<script type="text/javascript" src="js/ifan/init.js" />
+	</head>
+	<body onload="ifan.init()">
+		<div id="modal"></div>
+		<div id="doc">
+			<div id="hd">
+				<h1>爱叽歪</h1>
+				<div id="hd-buttons">
+					<b class="hd-button" id="w-minimize"></b><b class="hd-button" id="w-close"></b>
+				</div>
+			</div>
+			<div id="bd">
+				<!-- 消息部分 -->
+				<div id="content" style="display:none">
+					<ul id="msgs"></ul>
+					<div id="postarea">
+						<div id="pt-knob"></div>
+						<div id="pt-buttons"><b class="pt-button" id="pt-home" onclick="ifan.app.gotoHome()"></b><b  class="pt-button" id="pt-prefs" onclick="ifan.app.showPrefsPanel()"></b><b class="pt-button" id="pt-refresh" onclick="ifan.msg.updateLoop(true)"></b></div>
+						<form id="postform"><textarea name="status" tabindex="1"></textarea><input type="hidden" name="in_reply_to_status_id" value="" /></form>
+						<b id="pt-counter">140</b>
+					</div>
+				</div>
+				<!-- 登陆界面 -->
+				<div id="login">
+					<p id="login-slogan"></p>
+					<!--<div id="login-ft"><span id="login-quit" onclick="ifan.app.exit()">退出</span><span id="login-config" onclick="ifan.app.openPrefsPanel()">设置</span></div>-->
+				</div>
+				<!-- resize on bottom right -->
+				<span id="w-resize"></span>
+			</div>
+		</div>
+		
+		<!-- 设置面板 -->
+		<div id="prefs-panel" class="panel-modal panel-hide"><div class="panel-inner">
+			<img src="img/jiwai-340x96.jpg" />
+			<div id="pp-tab-w"><div id="pp-tab">
+				<b id="ppt-msgs" class="current">设置</b><b id="ppt-about">关于</b>
+			</div></div>
+			<div id="pp-content">
+				<!--设置-->
+				<div id="ppc-msgs">
+					<p>自动刷新：
+						<select id="option-update_interval">
+							<option value="120000">每2分钟</option>
+							<option value="300000">每5分钟</option>
+							<option value="900000">每15分钟</option>
+							<option value="1800000">每半小时</option>
+							<option value="3600000">每小时</option>
+							<option value="0">从不</option>
+						</select>
+					</p>
+					<p><label><input type="checkbox" id="option-accept_notificaiton" /> 有新消息时提示我</label><br />
+						<span style="margin-left:1.5em;">消息显示时间：</span>
+						<select id="option-notification_hide_time">
+							<option value="2000">2秒</option>
+							<option value="5000">5秒</option>
+							<option value="10000">10秒</option>
+							<option value="15000">15秒</option>
+							<option value="30000">30秒</option>
+							<option value="60000">1分钟</option>
+						</select>
+					</p>
+					<p><label><input type="checkbox" id="option-start_at_login" /> 开机自动启动</label></p>
+					<p id="option-passrem-p"><label><input type="checkbox" id="option-passrem"> 自动登录</label></p>
+					<p><label><input type="checkbox" id="option-check_update_at_appstart"> 自动检查更新</label> <button onclick="ifan.updater.check(true)">立即检查</button> <span id="ppc-version-latest"></span></p>
+				</div>
+				
+				<!--关于-->
+				<div id="ppc-about" style="display:none">
+					<p>爱叽歪是一款基于 Adobe AIR 技术的饭否客户端，居家旅行话痨必备。</p>
+					<p>需要了解爱叽歪的进展，请<button onclick="ifan.util.openURLInbrowser('http://jiwai.de/tsing')">关注 tsing</button></p>
+					<p></p>
+					<div class="copyright">
+						<p>版本 <span id="ifan-version"></span><br />版权所有 &copy; 2008-2009, <a href="http://fanfou.com/realazy" target="_blank">realazy</a></p>
+						<p>爱叽歪 hack自开源软件ifan，项目主页：<a href="http://ifan.realazy.org" target="_blank">http://ifan.realazy.org</a></p>
+					</div>
+				</div>
+			</div>
+			<div id="pp-ft"><button id="ppc-ok" onclick="ifan.app.hidePrefsPanel(); ifan.prefs.save()">确 定</button></div>
+		</div></div>
+		<!-- 登录面板 -->
+		<div id="login-panel" class="panel-modal panel-hide"><div class="panel-inner">
+			<form id="login-form">
+				<p id="login-error" class="error"></p>
+				<p>请使用叽歪的注册信息进行登录</p>
+				<p class="login-label"><span>用 户</span><input type="text" id="username" /></p>
+				<p class="login-label"><span>密 码</span><input type="password" id="password" /></p>
+				<p class="act"><span><label for="passrem" id="passrem-label"><input type="checkbox" id="passrem" /> 自动登录</label></span><button type="submit" id="login-panle-submit">登录</button></p>
+		</form>
+		</div></div>
+
+		<!-- 写私信面板 -->
+		<div id="dmsg-panel" class="panel-modal panel-hide"><div class="panel-inner">
+			<div id="dmsg-edit"><form id="dmsg-form">
+				<p id="dmsg-edit-p"><span>给 <strong id="dmsg-to_uname"></strong> 发私信：</span><b id="dmsg-counter">140</b></p>
+				<p><input type="hidden" name="user" value="0" /><input type="hidden" name="in_reply_to_id" value="" /><textarea name="text"></textarea></p>
+				<p class="act"><span id="dmsg-loading">正在发送，请稍候...</span><input type="button" id="dmsg-cancel" onclick="ifan.ui.hidePanel(ifan.app.panels['dmsg'])" value="取消" /> <button type="submit" id="dmsg-ok">发送</button></p>
+			</form></div>
+			<div id="dmsg-succ-result">
+				<p>私信发送成功。</p>
+				<p class="act"><button id="dmsg-succ-ok" onclick="ifan.ui.hidePanel(ifan.app.panels['dmsg'])">确定</button></p>
+			</div>
+			<div id="dmsg-fail-result">
+				<p style="color:#c00">私信发送失败！</p>
+				<p class="act"><button id="dmsg-fail-close" onclick="ifan.ui.hidePanel(ifan.app.panels['dmsg'])">关闭</button><button id="dmsg-fail-resend">返回</button></p>
+			</div>
+		</div></div>
+
+		<!--删除消息对话框-->
+		<div id="msgdel-panel" class="panel-modal panel-hide"><div class="panel-inner">
+		</div></div>
+	</body>
+</html>
