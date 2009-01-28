@@ -333,9 +333,8 @@ ifan.msg = {
 
 	_genMsg: function(item){
 		var ret = [],
-			statusURL = HOST + '/statuses/';
+			statusURL =  item['user']['profile_url'] + 'statuses/';
 		msg = this._escapeReply(item['text']);
-		if (ifan.app._is_twitter) statusURL = HOST + '/' + item['user']['screen_name'] + '/status/';
 		ret.push(this._mkUserURL(item, '<img src="' + item['user']['profile_image_url'] + '" />'));
 		ret.push('<h2>');
 		ret.push(this._mkUserURL(item));
