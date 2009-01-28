@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <update xmlns="http://ns.adobe.com/air/framework/update/description/1.0"> 
-    <version>1.1.3</version>
+    <version>1.1.4</version>
     <url>http://labs.geowhy.org/ijiwai/dl/ijiwai_latest.air</url> 
     <description>
         <![CDATA[
             基于ifan 1.1修改。感谢jiwai上的georgexsh, seek, seekamy 等等同学的支持.
+            1.1.4 修改了部分介绍信息
             1.1.3 修正时间链接错误的问题
             1.1.2 修正问题：
                 无法删除jiwai消息的问题
