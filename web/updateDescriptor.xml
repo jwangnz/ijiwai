@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <update xmlns="http://ns.adobe.com/air/framework/update/description/1.0"> 
-    <version>1.1.1</version>
-    <url>http://labs.geowhy.org/ijiwai/dl/ijiwai_1.1.1.air</url> 
+    <version>1.1.2</version>
+    <url>http://labs.geowhy.org/ijiwai/dl/ijiwai_1.1.2.air</url> 
     <description>
-		<![CDATA[
+        <![CDATA[
             基于ifan 1.1修改。感谢jiwai上的georgexsh, seek, seekamy 的支持.
             1.1.1 修正问题：
                 url 显示问题
                 浏览消息，用户信息时候url错误的问题
-		]]>
-	</description>
+            1.1.2 修正问题：
+                无法删除jiwai消息的bug
+                经过官方认证的source
+        ]]>
+    </description>
 </update>

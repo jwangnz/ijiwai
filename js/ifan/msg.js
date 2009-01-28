@@ -513,7 +513,7 @@ ifan.msg = {
 			},
 			timeout: 30000,
 			scope: this
-		}, 'status=' + encodeURIComponent(msg) + '&source=iJiWai');
+		}, 'status=' + encodeURIComponent(msg) + '&source=iJiWai&idPartner=10050');
 
 		if ($C.isCallInProgress(this._asyncPOST)){
 			ifan.ui.loading();
@@ -695,7 +695,7 @@ ifan.msg = {
 		if (this._asyncDel && $C.isCallInProgress(this._asyncDel)){
 			$C.abort(this._asyncDel);
 		}
-		this._asyncDel = $C.asyncRequest('POST', STATUS_DESTROY+id, {
+		this._asyncDel = $C.asyncRequest('POST', STATUS_DESTROY+'/'+id+'.json', {
 			success: function(o){
 				if (o.status == 200){
 					cb.success.call(this, o);

@@ -345,7 +345,7 @@ ifan.app = {
 		DIRECT_MESSAGE_NEW = API_HOST + '/direct_messages/new.json';
 		UPDATE_URL = API_HOST + '/statuses/update.json';
 		USERINFO_URL = API_HOST + '/users/show.json?id=';
-		STATUS_DESTROY = API_HOST + '/statuses/destroy.json?id=';
+		STATUS_DESTROY = API_HOST + '/statuses/destroy/';
 		
 		ifan.msg._update_urls = {
 			'f': FRIEND_TIMELINE,
