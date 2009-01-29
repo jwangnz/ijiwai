@@ -4,7 +4,7 @@
 	<filename>爱叽歪</filename>
 	<name>爱叽歪</name>
 	<description>爱叽歪专用于叽歪，居家旅行话痨必备。</description>
-	<version>1.1.4</version>
+	<version>1.1.5</version>
 	<customUpdateUI>true</customUpdateUI>
 	<installFolder>iJiWai</installFolder> 
 	<initialWindow>
@@ -18,7 +18,7 @@
 		<resizable>true</resizable>
 		<width>420</width>
         <height>600</height> 
-        <minSize>380 420</minSize>
+        <minSize>300 420</minSize>
 	</initialWindow>
 	<icon> 
         <image16x16>img/jicon-16.png</image16x16>

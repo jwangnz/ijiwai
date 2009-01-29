@@ -491,7 +491,7 @@ ifan.app = {
 	showError: function(errorMsg){
 		var err = $D.get('login-error');
 		err.style.display = 'block';
-		err.innerHTML = errorMsg || 'Email/密码错误，或网络超时，请检查';
+		err.innerHTML = errorMsg || '用户/密码错误，或网络超时，请检查';
 		$D.get('username').focus();
 	},
 
