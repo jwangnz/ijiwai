@@ -315,11 +315,14 @@ ifan.msg = {
 		ret.push('</h2><p><span class="msg">');
 		ret.push(msg);
 		ret.push('</span>');
-		ret.push('<span class="dt" dt="');
+		ret.push('<a class="dt outlink" dt="');
 		ret.push(Date.parse(item['created_at']));
-		ret.push('">');
+		ret.push('" href="');
+		ret.push(HOST + '/wo/direct_messages/reply/');
+		ret.push(item['id']);
+		ret.push('" target="_blank">');
 		ret.push(ifan.util.timeMeter(item['created_at']));
-		ret.push('</span>');
+		ret.push('</a>');
 		ret.push('</p>');
 		ret.push('<div class="actions" type="dmsg" to_uname="');
 		ret.push(item[this._d_name_field]);

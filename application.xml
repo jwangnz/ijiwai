@@ -4,7 +4,7 @@
 	<filename>爱叽歪</filename>
 	<name>爱叽歪</name>
 	<description>爱叽歪专用于叽歪网，居家旅行话痨必备。</description>
-	<version>1.1.7</version>
+	<version>1.1.8</version>
 	<customUpdateUI>true</customUpdateUI>
 	<installFolder>iJiWai</installFolder> 
 	<initialWindow>

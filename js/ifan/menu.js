@@ -168,7 +168,9 @@ ifan.Menu.prototype = {
 
 		'dmsg': function(){
 			var d = this.actionDescription;
-			ifan.msg.dmsg(d['to_uname'], d['to_uid'], d['msgid']);
+			var msg_id = d['msgid'];
+			if (d['type'] != 'dmsg') msg_id = '';
+			ifan.msg.dmsg(d['to_uname'], d['to_uid'], msg_id);
 		},
 
 		'rt': function(){
@@ -221,7 +223,6 @@ ifan.Menu.prototype = {
 	_disbaledItems: {
 		'self': {'reply':true, 'dmsg':true},
 		'else': {'del':true},
-		//'dmsg': {'reply':true, 'share':true, 'del':true, 'browse':true}
 		'dmsg': {'reply':true, 'share':true,}
 	},
 
