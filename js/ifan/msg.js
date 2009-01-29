@@ -477,7 +477,7 @@ ifan.msg = {
 				}
 				this.postMsg(val);
 			}
-		}, this, true);		
+		}, this, true);
 		$E.on(ta, 'focus', function(e){
 			if (ta.value == TEXTAREA_TIP){
 				ta.value = '';
@@ -496,6 +496,9 @@ ifan.msg = {
 	postMsg: function(msg){
 		var frm = $D.get('postform'),
 			postarea = frm['status'];
+		var postdata = 'status=' + encodeURIComponent(msg) + '&source=iJiWai&idPartner=10050';
+		if (frm['idUserReplyTo']) postdata += '&idUserReplyTo=' + encodeURIComponent(frm['idUserReplyTo'].value);
+		if (frm['idStatusReplyTo']) postdata += '&idStatusReplyTo=' + encodeURIComponent(frm['idStatusReplyTo'].value);
 		this.stopLoop();
 		if (this._asyncPOST && $C.isCallInProgress(this._asyncPOST)) return;
 		this._asyncPOST = $C.asyncRequest('POST', UPDATE_URL, {
@@ -512,7 +515,7 @@ ifan.msg = {
 			},
 			timeout: 30000,
 			scope: this
-		}, 'status=' + encodeURIComponent(msg) + '&source=iJiWai&idPartner=10050');
+		}, postdata);
 
 		if ($C.isCallInProgress(this._asyncPOST)){
 			ifan.ui.loading();
@@ -524,7 +527,8 @@ ifan.msg = {
 		var frm = $D.get('postform'),
 			postarea = frm['status'],
 			prefix = is_d ? 'd ' : '@';
-		frm['in_reply_to_status_id'].value = in_reply_to_status_id;
+		frm['idStatusReplyTo'].value = in_reply_to_status_id;
+		frm['idUserReplyTo'].value = name;
 		var v = postarea.value;
 		v = v == TEXTAREA_TIP ? '' : v;
 		postarea.value = prefix + name + ' ' + v;
@@ -534,7 +538,9 @@ ifan.msg = {
 	_postDMsg: function(e){
 		var frm = $D.get('dmsg-form'); 
 		$E.stopEvent(e);
-		$C.setForm(frm);
+		//$C.setForm(frm);
+		var postdata = 'user=' + encodeURIComponent(frm['user'].value) + '&text=' + encodeURIComponent(frm['text'].value) + '&source=iJiWai&idPartner=10050';
+		if (frm['idMessageReplyTo']) postdata += '&idMessageReplyTo=' + frm['idMessageReplyTo'].value;
 		var async = $C.asyncRequest('POST', DIRECT_MESSAGE_NEW, {
 			success: function(o){
 				try {
@@ -545,7 +551,7 @@ ifan.msg = {
 				if (res['id']){
 					frm['user'].value = '';
 					frm['text'].value = '';
-					frm['in_reply_to_id'] = '';
+					frm['idMessageReplyTo'] = '';
 					$D.get('dmsg-loading').style.display = 'none';
 					$D.get('dmsg-edit').style.display = 'none';
 					$D.get('dmsg-succ-result').style.display = 'block';
@@ -562,7 +568,7 @@ ifan.msg = {
 			},
 			timeout: 30000,
 			scope: this
-		});
+		}, postdata);
 		if ($C.isCallInProgress(async)){
 			$D.get('dmsg-loading').style.display = '';
 		}
@@ -582,8 +588,8 @@ ifan.msg = {
 
 	dmsg_fanfou: function(name, id, msgid){
 		var frm = $D.get('dmsg-form');
-		frm['user'].value = id;
-		frm['in_reply_to_id'].value = msgid || '';
+		frm['user'].value = name;
+		frm['idMessageReplyTo'].value = msgid || '';
 		$D.get('dmsg-edit').style.display = 'block';
 		$D.get('dmsg-loading').style.display = 'none';
 		$D.get('dmsg-succ-result').style.display = 'none';

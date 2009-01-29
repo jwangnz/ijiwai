@@ -43,7 +43,7 @@
 					<div id="postarea">
 						<div id="pt-knob"></div>
 						<div id="pt-buttons"><b class="pt-button" id="pt-home" onclick="ifan.app.gotoHome()"></b><b  class="pt-button" id="pt-prefs" onclick="ifan.app.showPrefsPanel()"></b><b class="pt-button" id="pt-refresh" onclick="ifan.msg.updateLoop(true)"></b></div>
-						<form id="postform"><textarea name="status" tabindex="1"></textarea><input type="hidden" name="in_reply_to_status_id" value="" /></form>
+						<form id="postform"><textarea name="status" tabindex="1"></textarea><input type="hidden" name="idStatusReplyTo" value="" /><input type="hidden" name="idUserReplyTo" value="" /></form>
 						<b id="pt-counter">140</b>
 					</div>
 				</div>
@@ -120,7 +120,7 @@
 		<div id="dmsg-panel" class="panel-modal panel-hide"><div class="panel-inner">
 			<div id="dmsg-edit"><form id="dmsg-form">
 				<p id="dmsg-edit-p"><span>给 <strong id="dmsg-to_uname"></strong> 发私信：</span><b id="dmsg-counter">140</b></p>
-				<p><input type="hidden" name="user" value="0" /><input type="hidden" name="in_reply_to_id" value="" /><textarea name="text"></textarea></p>
+				<p><input type="hidden" name="user" value="0" /><input type="hidden" name="idMessageReplyTo" value="" /><textarea name="text"></textarea></p>
 				<p class="act"><span id="dmsg-loading">正在发送，请稍候...</span><input type="button" id="dmsg-cancel" onclick="ifan.ui.hidePanel(ifan.app.panels['dmsg'])" value="取消" /> <button type="submit" id="dmsg-ok">发送</button></p>
 			</form></div>
 			<div id="dmsg-succ-result">

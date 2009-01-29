@@ -227,7 +227,7 @@ ifan.Notification.prototype = {
 					ifan.util.openURLInbrowser(t.href);
 				} else if ($D.hasClass(t, 'd')){
 					$E.stopEvent(e);
-					ifan.msg.dmsg(t.getAttribute('to_uname'), t.getAttribute('to_uid'), t.getAttribute('in_reply_to_id'));
+					ifan.msg.dmsg(t.getAttribute('to_uname'), t.getAttribute('to_uid'), t.getAttribute('idMessageReplyTo'));
 					el.scrollIntoView();
 					nw.visible = false;
 					$D.get('dmsg-form')['text'].focus();
