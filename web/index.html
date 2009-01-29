@@ -57,10 +57,10 @@
 			'name','badge',
 			'allowscriptaccess','all',
 			'pluginspage','http://www.macromedia.com/go/getflashplayer',
-			'flashvars','appname=爱叽歪&appurl=http://labs.geowhy.org/ijiwai/dl/ijiwai_latest.air&airversion=1.5&buttoncolor=9a0f1c&messagecolor=' + color + '&imageurl=jiwai.png',
+			'flashvars','appname=爱叽歪&appurl=http://labs.geowhy.org/ijiwai/download.php?version=latest&airversion=1.5&buttoncolor=9a0f1c&messagecolor=' + color + '&imageurl=jiwai.png',
 			'movie','badge' );
 	} else { 
-		document.write('<table id="AIRDownloadMessageTable"><tr><td>下载 <a href="dl/ijiwai_latest.air">爱饭</a>。<br /><br /><span id="AIRDownloadMessageRuntime">此程序的运行需要 <a href="');
+		document.write('<table id="AIRDownloadMessageTable"><tr><td>下载 <a href="download.php?version=latest">爱饭</a>。<br /><br /><span id="AIRDownloadMessageRuntime">此程序的运行需要 <a href="');
 		var platform = 'unknown';
 		if (typeof(window.navigator.platform) != undefined)
 		{
@@ -84,12 +84,12 @@
 	<table id="AIRDownloadMessageTable">
 	<tr>
 		<td>
-		下载 <a href="dl/ijiwai_latest.air">爱叽歪</a>。<br /><br /><span id="AIRDownloadMessageRuntime">需要安装 Adobe&#174;&nbsp;AIR&#8482; 才能运行此程序。<a href="http://airdownload.adobe.com/air/mac/download/latest/AdobeAIR.dmg">Mac OS</a> 或 <a href="http://airdownload.adobe.com/air/win/download/latest/AdobeAIRInstaller.exe">Windows</a>.</span>
+		下载 <a href="download.php?version=latest">爱叽歪</a>。<br /><br /><span id="AIRDownloadMessageRuntime">需要安装 Adobe&#174;&nbsp;AIR&#8482; 才能运行此程序。<a href="http://airdownload.adobe.com/air/mac/download/latest/AdobeAIR.dmg">Mac OS</a> 或 <a href="http://airdownload.adobe.com/air/win/download/latest/AdobeAIRInstaller.exe">Windows</a>.</span>
 		</td>
 	</tr>
 	</table>
 	</noscript>
-	<p id="download_alt">或者<a href="dl/ijiwai_latest.air">下载 ijiwai_latest.air</a> 文件包自行安装。<br />尚未安装 AIR 环境的请到 <a href="http://get.adobe.com/air/" target="_blank">http://get.adobe.com/air/</a> 下载。</p>
+	<p id="download_alt">或者<a href="download.php?version=latest">下载 ijiwai_latest.air</a> 文件包自行安装。<br />尚未安装 AIR 环境的请到 <a href="http://get.adobe.com/air/" target="_blank">http://get.adobe.com/air/</a> 下载。</p>
 
 	</div>
 	<h2>爱饭具有以下特色：</h2>

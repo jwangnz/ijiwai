@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <update xmlns="http://ns.adobe.com/air/framework/update/description/1.0"> 
     <version>1.1.4</version>
-    <url>http://labs.geowhy.org/ijiwai/dl/ijiwai_latest.air</url> 
+    <url>http://labs.geowhy.org/ijiwai/download.php?version=latest</url> 
     <description>
         <![CDATA[
             基于ifan 1.1修改。感谢jiwai上的georgexsh, seek, seekamy 等等同学的支持.
