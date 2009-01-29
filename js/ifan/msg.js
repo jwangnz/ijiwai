@@ -696,11 +696,13 @@ ifan.msg = {
 	/**
 	 * 删除消息
 	 */
-	del: function(id, cb, sco){
+	del: function(type, id, cb, sco){
 		if (this._asyncDel && $C.isCallInProgress(this._asyncDel)){
 			$C.abort(this._asyncDel);
 		}
-		this._asyncDel = $C.asyncRequest('POST', STATUS_DESTROY+'/'+id+'.json', {
+		var DESTROY_URL_BASE = STATUS_DESTROY;
+		if (type == 'dmsg') DESTROY_URL_BASE = DIRECT_MESSAGE_DESTROY;
+		this._asyncDel = $C.asyncRequest('POST', DESTROY_URL_BASE+id+'.json', {
 			success: function(o){
 				if (o.status == 200){
 					cb.success.call(this, o);

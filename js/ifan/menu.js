@@ -182,7 +182,7 @@ ifan.Menu.prototype = {
 
 		'del': function(){
 			var p = ifan.app.panels['msgdel'];
-			p.innerEl.innerHTML = '<p>确定删除这条消息吗？</p><p class="act"><button id="msgdel-cancel" class="msgdel-hide">取消</button> <button id="msgdel-del" class="msgdel-del" status_id="' + this.actionDescription['msgid'] + '">删除</button></p>';
+			p.innerEl.innerHTML = '<p>确定删除这条消息吗？</p><p class="act"><button id="msgdel-cancel" class="msgdel-hide">取消</button> <button id="msgdel-del" class="msgdel-del" msg_type="' + this.actionDescription['type']+'" status_id="' + this.actionDescription['msgid'] + '">删除</button></p>';
 			if (ifan.util.os.win){
 				$D.insertAfter('msgdel-cancel', 'msgdel-del');
 			}
@@ -194,6 +194,9 @@ ifan.Menu.prototype = {
 
 		'browse': function(){
 			var statusURL = this.actionDescription['to_profile'] + 'statuses/';
+			if (this.actionDescription['type'] == 'dmsg') {
+				statusURL = HOST + '/wo/direct_messages/reply/';
+			}
 			ifan.util.openURLInbrowser(statusURL+this.actionDescription['msgid']);
 		},
 
@@ -218,7 +221,8 @@ ifan.Menu.prototype = {
 	_disbaledItems: {
 		'self': {'reply':true, 'dmsg':true},
 		'else': {'del':true},
-		'dmsg': {'reply':true, 'share':true, 'del':true, 'browse':true}
+		//'dmsg': {'reply':true, 'share':true, 'del':true, 'browse':true}
+		'dmsg': {'reply':true, 'share':true,}
 	},
 
 	/**

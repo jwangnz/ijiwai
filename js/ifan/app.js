@@ -216,7 +216,8 @@ ifan.app = {
 				p.hide();
 			} else if ($D.hasClass(t, 'msgdel-del')){
 				var sid = t.getAttribute('status_id');
-				ifan.msg.del(sid, {
+				var type = t.getAttribute('msg_type');
+				ifan.msg.del(type, sid, {
 					success: function(o){
 						p.innerEl.innerHTML = '<p>成功删除消息。</p><p class="act"><button id="msgdel-succ" class="msgdel-hide">关闭</button></p>';
 						$D.get('msgdel-succ').focus();
@@ -343,6 +344,7 @@ ifan.app = {
 		REPLIES_TIMELINE = API_HOST + '/statuses/replies.json?format=html';
 		DIRECT_MESSAGES = API_HOST + '/direct_messages.json';
 		DIRECT_MESSAGE_NEW = API_HOST + '/direct_messages/new.json';
+		DIRECT_MESSAGE_DESTROY = API_HOST + '/direct_messages/destroy/';
 		UPDATE_URL = API_HOST + '/statuses/update.json';
 		USERINFO_URL = API_HOST + '/users/show.json?id=';
 		STATUS_DESTROY = API_HOST + '/statuses/destroy/';
