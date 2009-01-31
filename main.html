@@ -109,26 +109,26 @@
 		<div id="login-panel" class="panel-modal panel-hide"><div class="panel-inner">
 			<form id="login-form">
 				<p id="login-error" class="error"></p>
-				<p>请使用叽歪的注册信息进行登录</p>
+				<p>请使用叽歪(JiWai.de)的注册信息进行登录</p>
 				<p class="login-label"><span>用 户</span><input type="text" id="username" /></p>
 				<p class="login-label"><span>密 码</span><input type="password" id="password" /></p>
 				<p class="act"><span><label for="passrem" id="passrem-label"><input type="checkbox" id="passrem" /> 自动登录</label></span><button type="submit" id="login-panle-submit">登录</button></p>
 		</form>
 		</div></div>
 
-		<!-- 写私信面板 -->
+		<!-- 写悄悄话面板 -->
 		<div id="dmsg-panel" class="panel-modal panel-hide"><div class="panel-inner">
 			<div id="dmsg-edit"><form id="dmsg-form">
-				<p id="dmsg-edit-p"><span>给 <strong id="dmsg-to_uname"></strong> 发私信：</span><b id="dmsg-counter">140</b></p>
+				<p id="dmsg-edit-p"><span>给 <strong id="dmsg-to_uname"></strong> 发悄悄话：</span><b id="dmsg-counter">140</b></p>
 				<p><input type="hidden" name="user" value="0" /><input type="hidden" name="idMessageReplyTo" value="" /><textarea name="text"></textarea></p>
 				<p class="act"><span id="dmsg-loading">正在发送，请稍候...</span><input type="button" id="dmsg-cancel" onclick="ifan.ui.hidePanel(ifan.app.panels['dmsg'])" value="取消" /> <button type="submit" id="dmsg-ok">发送</button></p>
 			</form></div>
 			<div id="dmsg-succ-result">
-				<p>私信发送成功。</p>
+				<p>悄悄话发送成功。</p>
 				<p class="act"><button id="dmsg-succ-ok" onclick="ifan.ui.hidePanel(ifan.app.panels['dmsg'])">确定</button></p>
 			</div>
 			<div id="dmsg-fail-result">
-				<p style="color:#c00">私信发送失败！</p>
+				<p style="color:#c00">悄悄话发送失败！</p>
 				<p class="act"><button id="dmsg-fail-close" onclick="ifan.ui.hidePanel(ifan.app.panels['dmsg'])">关闭</button><button id="dmsg-fail-resend">返回</button></p>
 			</div>
 		</div></div>

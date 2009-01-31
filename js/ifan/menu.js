@@ -27,7 +27,7 @@ ifan.Menu = function(){
 	this.loader.loadString('<html><head><meta name="Content-Type" content="text/html; charset=UTF-8" /><link rel="stylesheet" href="app:/style.css" type="text/css" media="screen" /></head><body id="actions-menu"><div id="actions-dialog">\
 			<ul>\
 				<li id="reply">回复这条消息</li>\
-				<li id="dmsg">发送私信</li>\
+				<li id="dmsg">发送悄悄话</li>\
 				<li class="sep"></li>\
 				<!--li id="share">分享这条消息</li-->\
 				<li id="rt">转帖这条消息</li>\
@@ -118,9 +118,9 @@ ifan.Menu.prototype = {
 			}
 		}
 		if (d['type'] == 'dmsg'){
-			this._get('dmsg').innerHTML = '回复私信';
+			this._get('dmsg').innerHTML = '回复悄悄话';
 		} else {
-			this._get('dmsg').innerHTML = '发送私信';
+			this._get('dmsg').innerHTML = '发送悄悄话';
 		}
 	},
 	

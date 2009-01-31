@@ -61,7 +61,7 @@ ifan.msg = {
 		'r': null
 	},
 
-	_regReply: /^@([^\s]+)\s(.*)/,
+	_regReply: /@([^\s^@]+)\s/g,
 
 	resetEnv: function(){
 		for (var k in this._req_statuses){
@@ -105,6 +105,7 @@ ifan.msg = {
 
 	_isSelf_fanfou: function(item, userkey){
 		userkey = userkey || 'user';
+		if (userkey == 'sender') return item['sender_screen_name'] == ifan.app.userinfo['screen_name'];
 		return item[userkey]['id'] == ifan.app.userinfo['id'];
 	},
 
@@ -378,12 +379,13 @@ ifan.msg = {
 
 	_escapeReply: function(msg) {
 		msg = ifan.util.replaceURL(msg);
-		match = ifan.msg._regReply.exec(msg);
-		if (match)
-		{
-			msg = ['@<a class="outlink" target="_blank" href="', HOST, '/', match[1], '/', '">', match[1], '</a>', ' ', match[2]].join('');
-		}
-		return msg;
+		return ifan.msg.replaceReply(msg);
+	},
+
+	replaceReply: function(msg) {
+		return msg.replace(ifan.msg._regReply, function($0, $1, $2) {
+			return ['@<a class="outlink" targat="_blank" href="', HOST, '/', $1, '/', '">', $1, '</a> '].join('');
+		});
 	},
 
 	_escapeMsg: function(msg){
@@ -584,7 +586,7 @@ ifan.msg = {
 			if (text){
 				p.innerHTML = text;
 			} else {
-				p.innerHTML = '私信发送失败！';
+				p.innerHTML = '悄悄话发送失败！';
 			}
 		}
 	},
