@@ -167,7 +167,7 @@ ifan.msg = {
 					failure: function(o){
 						this._handleFailure(o, key);
 					},
-					timeout: 30000,
+					timeout: 60000,
 					scope: this
 				});
 				
@@ -195,17 +195,16 @@ ifan.msg = {
 	_handleFailure: function(o, key){
 		this._req_statuses[key] = 2;
 		this._req_response[key] = [];
-		if (!this._is403(o)){
-			this._loadMsg();
-		}
+		if (this._handle401(o)) return;
+		this._loadMsg();
 	},
 
-	_is403: function(o){
-		if (o.status == 403){
-			ifan.app.showLoginPanel(function(){
-				ifan.app.showError('密码已变更，请重新登录');
-			});
+	_handle401: function(o){
+		if (o.status == 401){
+			errmsg = '出错了：你的用户/密码已变更；或者需要填写验证码，请先在网页上登录叽歪，然后重新登录爱叽歪';
+			ifan.app.showLoginPanel(errmsg);
 			ifan.app._isLogined = false;
+			ifan.app.showWindow();
 			return true;
 		}
 		return false;
@@ -279,9 +278,8 @@ ifan.msg = {
 		}
 		if (!initFirst){
 			this.showNotification(datas);
-		}
-		if (initFirst || window.nativeWindow.active){
-			this._scroll();
+		} else {
+			this._wrapper.scrollTop = 0;
 		}
 		this.updateTimeMeter();
 	},
@@ -411,10 +409,6 @@ ifan.msg = {
 		return ret;
 	},
 
-	_scroll: function(){
-		this._wrapper.scrollTop = 0;
-	},
-
 	_getAttr: function(el){
 		var ret = {msgid:null, type:null, to_uid:null, to_uname:null, to_profile:null};
 		for (var k in ret){
@@ -502,6 +496,8 @@ ifan.msg = {
 		var frm = $D.get('postform'),
 			postarea = frm['status'];
 		var postdata = 'status=' + encodeURIComponent(msg) + '&source=iJiWai&idPartner=10050';
+		alert(msg);
+		alert(encodeURIComponent(msg));
 		if (frm['idUserReplyTo']) postdata += '&idUserReplyTo=' + encodeURIComponent(frm['idUserReplyTo'].value);
 		if (frm['idStatusReplyTo']) postdata += '&idStatusReplyTo=' + encodeURIComponent(frm['idStatusReplyTo'].value);
 		this.stopLoop();
@@ -515,10 +511,12 @@ ifan.msg = {
 			},
 			failure: function(o){
 				postarea.disabled = false;
-				this.updateLoop();
+				//this.updateLoop();
 				ifan.ui.teardownLoading();
+				if (this._handle401(o)) return;
+				this.updateLoop();
 			},
-			timeout: 30000,
+			timeout: 60000,
 			scope: this
 		}, postdata);
 
@@ -621,8 +619,12 @@ ifan.msg = {
 				nn = t.nodeName.toLowerCase();
 			if (nn == 'img'){
 				t = t.parentNode;
+				nn = t.nodeName.toLowerCase();
 			}
-			if ($D.hasClass(t, 'at')){
+			if (nn == 'a'){
+				$E.stopEvent(e);
+				ifan.util.openURLInbrowser(t.href); // fixed adobe air bug of navigateInSystemBrowser encode url twice
+			} else if ($D.hasClass(t, 'at')){
 				var li = $D.getAncestorByTagName(t, 'li');
 				ifan.msg.reply(t.parentNode.getAttribute('to_uname'), li.id);
 				if (!$D.hasClass(li, 'selected')) this.addSelectedClass(li);

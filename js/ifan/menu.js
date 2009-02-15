@@ -29,6 +29,8 @@ ifan.Menu = function(){
 				<li id="reply">回复这条消息</li>\
 				<li id="dmsg">发送悄悄话</li>\
 				<li class="sep"></li>\
+				<li id="clearall">清空消息列表</li>\
+				<li class="sep"></li>\
 				<!--li id="share">分享这条消息</li-->\
 				<li id="rt">转帖这条消息</li>\
 				<li id="del">删除这条消息</li>\
@@ -178,7 +180,7 @@ ifan.Menu.prototype = {
 				author = li.getElementsByTagName('h2')[0].innerText,
 				content = li.getElementsByClassName('msg')[0].innerText,
 				textarea = $D.get('postform')['status'];
-			textarea.value = '转：@' + author + ' ' + content;
+			textarea.value = '转自@' + author + ': ' + content;
 			ifan.ui.focusInTextarea(textarea);
 		},
 
@@ -201,6 +203,10 @@ ifan.Menu.prototype = {
 			}
 			ifan.util.openURLInbrowser(statusURL+this.actionDescription['msgid']);
 		},
+
+		'clearall': function(){
+			$D.get('msgs').innerHTML = '';
+ 		},
 
 		'refresh': function(){
 			ifan.msg.updateLoop(true);

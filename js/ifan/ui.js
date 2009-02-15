@@ -37,6 +37,12 @@ ifan.ui = {
 		}
 		$E.on(textarea, 'keydown', evhandler, this, true);
 		$E.on(textarea, 'focus', evhandler, this, true);
+		$E.on(textarea, 'paste', function(e) {
+			var _this = this;
+			setTimeout(function() {
+				evhandler.call(_this, e);
+			}, 0);
+		}, this, true);
 	},
 
 	/**

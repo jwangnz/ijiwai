@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <update xmlns="http://ns.adobe.com/air/framework/update/description/1.0"> 
-    <version>1.1.9</version>
+    <version>1.2.0</version>
     <url>http://labs.geowhy.org/ijiwai/download.php?version=latest</url> 
     <description>
         <![CDATA[
             基于ifan 1.1修改。感谢jiwai上的hedgehog, georgexsh, seek, seekamy, Hirhein, 阿帕, 阿苏米等(排名不分先后)同学的支持.
+            1.2.0 导入 ifan 1.1.2的清空消息列表功能。美化了一下图标及其它若干bug修正。
             1.1.9 将私信改成悄悄话; 修正多个@无法正确显示链接的bug; 修正收到新悄悄话后可能出现的异常; 添加ifan的License的文件
             1.1.8 修正了发送私信失败的问题，添加了私信的查看链接, 对程序进行瘦身
             1.1.7 增加悄悄话的删除和浏览功能

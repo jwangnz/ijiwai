@@ -104,18 +104,10 @@ ifan.app = {
 		};
 		for (var key in this.panels){
 			this.panels[key] = new ifan.ui.ModalPanel(key+'-panel');
-		}
-		this.setupLoginPanel();
+		}	
 		this.setupPrefsPanel();
 		this.setupDmsgPanel();
 		this.setupMsgdelPanel();
-	},
-
-	setupLoginPanel: function(){
-		this.panels['login'].onShow.subscribe(function(t, a){
-			if (!this._showLoginPanelError) return;
-			this.showError();
-		}, this, true);
 	},
 
 	setupPrefsPanel: function(){
@@ -245,11 +237,17 @@ ifan.app = {
 		}, this, true);
 	},
 	
-	showLoginPanel: function(showError){
-		this._showLoginPanelError = showError;
+	showLoginPanel: function(errmsg){
 		ifan.msg.stopLoop();
 		ifan.util.fortune();
 		ifan.ui.showPanel(this.panels['login'], true);
+		var elErr = $D.get('login-error');
+		if (errmsg){
+			elErr.style.display = '';
+			elErr.innerHTML = errmsg;
+		} else {
+			elErr.style.display = 'none';
+		}
 		$D.get('login').style.display = 'block';
 		$D.get('content').style.display = 'none';
 		$D.get('msgs').innerHTML = '';
@@ -379,7 +377,7 @@ ifan.app = {
 				}
 			},
 			failure: function(o){
-				this.showLoginPanel(true);
+				this.showLoginPanel(LOGIN_ERROR);
 				this._isLogined = false;
 			},
 			timeout: 30000,
@@ -434,6 +432,9 @@ ifan.app = {
 			pause = new air.NativeMenuItem('隐藏消息提示框'),
 			logout = new air.NativeMenuItem('注销'),
 			prefs = new air.NativeMenuItem('设置');
+		
+		logout.name = 'logout';
+		logout.enabled = false;
 		
 		pause.checked = !ifan.prefs.get('accept_notificaiton');
 		$E.on(pause, air.Event.SELECT, function(e){
@@ -490,20 +491,13 @@ ifan.app = {
 		}
 	},
 
-	showError: function(errorMsg){
-		var err = $D.get('login-error');
-		err.style.display = 'block';
-		err.innerHTML = errorMsg || '用户/密码错误，或网络超时，请检查';
-		$D.get('username').focus();
-	},
-
 	getUserInfo: function(userid, callback, sco){
 		$C.asyncRequest('GET', USERINFO_URL + userid, {
 			success: function(o){
 				try {
 					this.userinfo = eval('(' + o.responseText + ')');
 				} catch(e){
-					this.showLoginPanel(true);
+					this.showLoginPanel(LOGIN_ERROR);
 					this.userinfo = null;
 				}
 				if (this.userinfo){
@@ -511,7 +505,7 @@ ifan.app = {
 				}
 			},
 			failure: function(o){
-				this.showLoginPanel(true);
+				this.showLoginPanel(LOGIN_ERROR);
 				this._isLogined = false;
 			},
 			timeout: 30000,
@@ -525,10 +519,14 @@ ifan.app = {
 		$D.get('login-error').style.display = 'none';
 		this.showWindow();
 		window.nativeWindow.title = APPNAME;
+		var logoutItem = air.NativeApplication.nativeApplication.icon.menu.getItemByName('logout');
+		logoutItem.enabled = false;
 	},
 
 	loadMsgs: function(){
 		this._isLogined = true;
+		var logout = air.NativeApplication.nativeApplication.icon.menu.getItemByName('logout');
+		logout.enabled = true;
 		var _this = this;
 		ifan.msg.updateMsgs();
 		if (ifan.prefs.get('check_update_at_appstart')
