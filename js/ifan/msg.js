@@ -496,8 +496,6 @@ ifan.msg = {
 		var frm = $D.get('postform'),
 			postarea = frm['status'];
 		var postdata = 'status=' + encodeURIComponent(msg) + '&source=iJiWai&idPartner=10050';
-		alert(msg);
-		alert(encodeURIComponent(msg));
 		if (frm['idUserReplyTo']) postdata += '&idUserReplyTo=' + encodeURIComponent(frm['idUserReplyTo'].value);
 		if (frm['idStatusReplyTo']) postdata += '&idStatusReplyTo=' + encodeURIComponent(frm['idStatusReplyTo'].value);
 		this.stopLoop();
