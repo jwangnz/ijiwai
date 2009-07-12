@@ -472,6 +472,8 @@ ifan.msg = {
 				if (!val){
 					ta.blur();
 					counter.innerHTML = '140';
+					frm['idUserReplyTo'].value = '';
+					frm['idStatusReplyTo'].value = '';
 					return;
 				}
 				this.postMsg(val);
@@ -481,6 +483,8 @@ ifan.msg = {
 			if (ta.value == TEXTAREA_TIP){
 				ta.value = '';
 				counter.innerHTML = '140';
+				frm['idUserReplyTo'].value = '';
+				frm['idStatusReplyTo'].value = '';
 			}
 		});
 		
@@ -488,6 +492,8 @@ ifan.msg = {
 			if (!ta.value){
 				ta.value = TEXTAREA_TIP;
 				counter.innerHTML = '140';
+				frm['idUserReplyTo'].value = '';
+				frm['idStatusReplyTo'].value = '';
 			}
 		});
 	},
@@ -503,6 +509,8 @@ ifan.msg = {
 		this._asyncPOST = $C.asyncRequest('POST', UPDATE_URL, {
 			success: function(o){
 				postarea.value = '';
+				frm['idUserReplyTo'].value = '';
+				frm['idStatusReplyTo'].value = '';
 				this.updateLoop(true);
 				postarea.disabled = false;
 				ifan.ui.teardownLoading();
